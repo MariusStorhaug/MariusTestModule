@@ -7,7 +7,9 @@
         Performs tests on a module.
 
         .EXAMPLE
+        ```pwsh
         Test-PSModule -Name 'World'
+        ```
 
         "Hello, World!"
     #>
