@@ -10,6 +10,9 @@
         Get-Greeting -TimeOfDay 'Morning'
 
         Returns "Good Morning!"
+
+        .LINK
+        https://MariusStorhaug.github.io/MariusTestModule/Functions/Get-Greeting/
     #>
     [OutputType([string])]
     [CmdletBinding()]

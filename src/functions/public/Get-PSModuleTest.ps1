@@ -12,6 +12,9 @@
         ```
 
         "Hello, World!"
+
+        .LINK
+        https://MariusStorhaug.github.io/MariusTestModule/Functions/Get-PSModuleTest/
     #>
     [CmdletBinding()]
     param (
