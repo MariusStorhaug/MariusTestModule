@@ -11,6 +11,7 @@
 
         Returns "Good Morning!"
     #>
+    [OutputType([string])]
     [CmdletBinding()]
     param (
         # The time of day for the greeting.
