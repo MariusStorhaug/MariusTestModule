@@ -11,6 +11,11 @@
 
         Returns "Good Morning!"
 
+        .EXAMPLE
+        Get-Greeting -TimeOfDay 'Evening'
+
+        Returns "Good Evening!"
+
         .LINK
         https://MariusStorhaug.github.io/MariusTestModule/Functions/Get-Greeting/
     #>
