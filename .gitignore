@@ -9,8 +9,6 @@
 # IDE files
 .idea/
 .vs/
-*.suo
-*.cake
 
 # Local History for Visual Studio Code
 .history/*
