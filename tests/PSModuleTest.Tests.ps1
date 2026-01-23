@@ -22,6 +22,18 @@ Describe 'Module' {
         Get-Greeting -TimeOfDay 'Evening' | Should -Be 'Good Evening!'
     }
 
+    It 'Function: Get-Greeting - With Name' {
+        Get-Greeting -Name 'Alice' | Should -Be 'Good Morning, Alice!'
+    }
+
+    It 'Function: Get-Greeting - Evening with Name' {
+        Get-Greeting -TimeOfDay 'Evening' -Name 'Bob' | Should -Be 'Good Evening, Bob!'
+    }
+
+    It 'Function: Get-Greeting - Afternoon with Name' {
+        Get-Greeting -TimeOfDay 'Afternoon' -Name 'Charlie' | Should -Be 'Good Afternoon, Charlie!'
+    }
+
     It 'Function: Get-CurrentDateTime - Default format' {
         $result = Get-CurrentDateTime
         $result | Should -Match '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$'
