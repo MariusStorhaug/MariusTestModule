@@ -10,6 +10,7 @@
 .idea/
 .vscode/
 *.log
+*.tmp
 
 # Local History for Visual Studio Code
 .history/*
