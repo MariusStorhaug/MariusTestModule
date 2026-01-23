@@ -8,10 +8,6 @@
 
 # IDE files
 .idea/
-.vscode/
-*.log
-*.tmp
-*.bak
 
 # Local History for Visual Studio Code
 .history/*
