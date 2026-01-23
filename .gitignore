@@ -9,6 +9,7 @@
 # IDE files
 .idea/
 .vscode/
+*.log
 
 # Local History for Visual Studio Code
 .history/*
