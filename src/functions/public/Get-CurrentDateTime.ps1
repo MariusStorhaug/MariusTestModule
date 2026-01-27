@@ -17,6 +17,11 @@
 
         Returns the current date in short date format.
 
+        .EXAMPLE
+        Get-CurrentDateTime -Format 'Custom' -CustomFormat 'dddd, MMMM dd, yyyy'
+
+        Returns the current date in a custom format like "Monday, January 20, 2026".
+
         .LINK
         https://MariusStorhaug.github.io/MariusTestModule/Functions/Get-CurrentDateTime/
     #>
