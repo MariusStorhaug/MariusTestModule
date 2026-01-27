@@ -30,4 +30,3 @@ jobs:
     uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@test/important-file-changes
     secrets:
       APIKey: ${{ secrets.APIKey }}
-
