@@ -12,11 +12,6 @@
 
         Returns the current date and time in the default format (yyyy-MM-dd HH:mm:ss).
 
-        .EXAMPLE
-        Get-CurrentDateTime -Format 'Short'
-
-        Returns the current date in short date format.
-
         .LINK
         https://MariusStorhaug.github.io/MariusTestModule/Functions/Get-CurrentDateTime/
     #>
