@@ -27,6 +27,6 @@ permissions:
 
 jobs:
   Process-PSModule:
-    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@test/important-file-changes
+    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@a15249813c1d7e1a0e4faa2c936fe4978f03845d # v5.4.2
     secrets:
       APIKey: ${{ secrets.APIKey }}
