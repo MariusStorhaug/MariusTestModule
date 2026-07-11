@@ -28,11 +28,11 @@ permissions:
 jobs:
   Process-PSModule:
     # SPIKE: pinned to the Process-PSModule branch that adds the 'Environment' input.
-    # Secrets and variables now come from the "Testing" GitHub Environment, not from a
-    # caller-built TestData blob (a job that calls a reusable workflow cannot set an
-    # environment, so it cannot read environment-scoped secrets/variables itself).
+    # Environment secrets are only reachable inside the reusable workflow when the whole
+    # call chain uses `secrets: inherit` AND the test jobs bind to the environment. A job
+    # that calls a reusable workflow cannot set an environment, so the binding happens
+    # inside Process-PSModule; the caller just inherits secrets and names the environment.
     uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@spike/environment-support
-    secrets:
-      APIKey: ${{ secrets.APIKey }}
+    secrets: inherit
     with:
       Environment: Testing
