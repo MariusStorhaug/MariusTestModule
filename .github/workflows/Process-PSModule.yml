@@ -27,7 +27,7 @@ permissions:
 
 jobs:
   Process-PSModule:
-    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@v6.1.2
+    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@d4020f3c9c3621cebae5d8bf4ffaf10f55c1784a # v6.1.2
     secrets:
       APIKey: ${{ secrets.APIKey }}
       # E2E: push a secret (masked in logs) and a variable (not masked) into the module test jobs.
