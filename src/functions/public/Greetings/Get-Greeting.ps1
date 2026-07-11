@@ -23,7 +23,7 @@
         Returns "Good Morning, Alice!" to the user.
 
         .LINK
-        https://MariusStorhaug.github.io/MariusTestModule/Functions/Get-Greeting/
+        https://MariusStorhaug.github.io/MariusTestModule/Functions/Greetings/Get-Greeting/
     #>
     [OutputType([string])]
     [CmdletBinding()]
