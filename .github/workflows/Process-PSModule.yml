@@ -26,35 +26,15 @@ permissions:
   id-token: write
 
 jobs:
-  # EXPERIMENT: a raw toJSON(secrets) dump fails because Import-TestData rejects the auto-injected
-  # github_token (reserved GITHUB_ prefix). This prep job serializes every secret and variable,
-  # strips github_token, and forwards the sanitized JSON to Process-PSModule as the TestData secret.
-  Prep-TestData:
-    runs-on: ubuntu-latest
-    outputs:
-      testdata: ${{ steps.build.outputs.testdata }}
-    steps:
-      - name: Build TestData from all secrets and variables
-        id: build
-        shell: pwsh
-        env:
-          ALL_SECRETS: ${{ toJSON(secrets) }}
-          ALL_VARS: ${{ toJSON(vars) }}
-        run: |
-          $secrets = $env:ALL_SECRETS | ConvertFrom-Json
-          $variables = $env:ALL_VARS | ConvertFrom-Json
-          # Drop the auto-injected github_token; Import-TestData rejects the reserved GITHUB_ prefix.
-          if ($secrets.PSObject.Properties['github_token']) {
-              $secrets.PSObject.Properties.Remove('github_token')
-          }
-          $payload = [ordered]@{ secrets = $secrets; variables = $variables } | ConvertTo-Json -Compress -Depth 10
-          "testdata=$payload" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-
   Process-PSModule:
-    needs: Prep-TestData
     uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@d4020f3c9c3621cebae5d8bf4ffaf10f55c1784a # v6.1.2
     secrets:
       APIKey: ${{ secrets.APIKey }}
-      # Forward the sanitized full dump: every secret except github_token, plus every variable.
-      # Import-TestData exposes each as $env:<name>; tests/Environment.Tests.ps1 iterates and prints.
-      TestData: ${{ needs.Prep-TestData.outputs.testdata }}
+      # EXPERIMENT conclusion: SECRETS cannot be bulk-dumped. toJSON(secrets) always carries
+      # github_token, which Import-TestData rejects (reserved GITHUB_ prefix); and pre-filtering it
+      # in a prep job is blocked by GitHub's "skip output may contain secret" guard on job outputs.
+      # So secrets must be named explicitly. VARIABLES, however, bulk-pass fine via toJSON(vars):
+      # no github_token, not secret, and passed inline (not through a job output).
+      TestData: >-
+        { "secrets": { "TEST_SECRET": "${{ secrets.TEST_SECRET }}" },
+        "variables": ${{ toJSON(vars) }} }
