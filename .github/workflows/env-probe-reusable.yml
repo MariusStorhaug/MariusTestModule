@@ -1,0 +1,35 @@
+name: env-probe-reusable
+
+# SPIKE probe: a reusable workflow whose job binds to the `Testing` environment.
+# Determines whether an environment SECRET is reachable inside a reusable workflow,
+# both by enumeration (toJSON(secrets)) and by explicit declared name.
+
+on:
+  workflow_call:
+    secrets:
+      TEST_ENV_SECRET:
+        description: Declared so it can be referenced by name; the environment value should override.
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  reusable-probe:
+    runs-on: ubuntu-latest
+    environment: Testing
+    steps:
+      - name: Probe contexts inside a reusable workflow bound to the environment
+        shell: pwsh
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+          ALL_VARS: ${{ toJSON(vars) }}
+          NAMED_DECLARED_SECRET: ${{ secrets.TEST_ENV_SECRET }}
+          NAMED_ENV_VAR: ${{ vars.TEST_ENV_VARIABLE }}
+        run: |
+          $s = $env:ALL_SECRETS | ConvertFrom-Json
+          $v = $env:ALL_VARS | ConvertFrom-Json
+          Write-Host "REUSABLE secrets keys: $((@($s.PSObject.Properties.Name) | Sort-Object) -join ', ')"
+          Write-Host "REUSABLE vars keys:    $((@($v.PSObject.Properties.Name) | Sort-Object) -join ', ')"
+          Write-Host "REUSABLE named declared secret (TEST_ENV_SECRET) present: $(-not [string]::IsNullOrEmpty($env:NAMED_DECLARED_SECRET))"
+          Write-Host "REUSABLE named env var (TEST_ENV_VARIABLE) present:       $(-not [string]::IsNullOrEmpty($env:NAMED_ENV_VAR))"

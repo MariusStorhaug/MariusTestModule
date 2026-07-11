@@ -1,0 +1,47 @@
+name: env-probe
+
+# SPIKE probe: compares how an environment's secret/variable are seen by a DIRECT
+# job vs a REUSABLE workflow job, both bound to the `Testing` environment.
+# Runs on push to the spike branch (workflow_dispatch needs the file on the default branch).
+
+on:
+  push:
+    branches:
+      - spike/environment-testdata
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Baseline: a normal (non-reusable) job binds to an environment directly.
+  direct-probe:
+    runs-on: ubuntu-latest
+    environment: Testing
+    steps:
+      - name: Probe contexts in a direct job bound to the environment
+        shell: pwsh
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+          ALL_VARS: ${{ toJSON(vars) }}
+          NAMED_SECRET: ${{ secrets.TEST_ENV_SECRET }}
+          NAMED_VAR: ${{ vars.TEST_ENV_VARIABLE }}
+        run: |
+          $s = $env:ALL_SECRETS | ConvertFrom-Json
+          $v = $env:ALL_VARS | ConvertFrom-Json
+          Write-Host "DIRECT secrets keys: $((@($s.PSObject.Properties.Name) | Sort-Object) -join ', ')"
+          Write-Host "DIRECT vars keys:    $((@($v.PSObject.Properties.Name) | Sort-Object) -join ', ')"
+          Write-Host "DIRECT named env secret present: $(-not [string]::IsNullOrEmpty($env:NAMED_SECRET))"
+          Write-Host "DIRECT named env var present:    $(-not [string]::IsNullOrEmpty($env:NAMED_VAR))"
+
+  # The real question: does a reusable workflow bound to the environment get the env
+  # secret WITHOUT the caller passing it (the caller cannot, being a `uses:` job)?
+  reusable-no-pass:
+    uses: ./.github/workflows/env-probe-reusable.yml
+    # deliberately passes nothing
+
+  # Does secrets: inherit change anything? (The caller job cannot bind to an
+  # environment, so inherited secrets should NOT include the environment secret.)
+  reusable-inherit:
+    uses: ./.github/workflows/env-probe-reusable.yml
+    secrets: inherit
