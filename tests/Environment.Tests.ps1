@@ -13,21 +13,24 @@
 [CmdletBinding()]
 param()
 
-Describe 'TestData is pushed into the module tests' {
-    It 'Exposes the secret from the "secrets" map' {
-        $actual = [System.Environment]::GetEnvironmentVariable('TEST_SECRET')
+Describe 'Environment-scoped test data reaches the module tests' {
+    # TEST_ENV_SECRET / TEST_ENV_VARIABLE exist ONLY in the "Testing" GitHub Environment
+    # (not at repository level), so seeing them here proves the reusable workflow sourced
+    # them from the environment binding rather than from a caller-provided TestData blob.
+    It 'Exposes the environment secret as $env:TEST_ENV_SECRET' {
+        $actual = [System.Environment]::GetEnvironmentVariable('TEST_ENV_SECRET')
         $actual | Should -Not -BeNullOrEmpty
-        $actual | Should -BeExactly 'mariustestmodule-secret-fixture-value'
+        $actual | Should -BeExactly 'env-scoped-secret-fixture-value'
     }
 
-    It 'Exposes the variable from the "variables" map' {
-        $actual = [System.Environment]::GetEnvironmentVariable('TEST_VARIABLE')
+    It 'Exposes the environment variable as $env:TEST_ENV_VARIABLE' {
+        $actual = [System.Environment]::GetEnvironmentVariable('TEST_ENV_VARIABLE')
         $actual | Should -Not -BeNullOrEmpty
-        $actual | Should -BeExactly 'mariustestmodule-variable-fixture-value'
+        $actual | Should -BeExactly 'env-scoped-variable-fixture-value'
     }
 
-    It 'Masks the secret in the log even when a test prints it in plain text' {
-        Write-Host "Secret in plain text:   $env:TEST_SECRET"
-        Write-Host "Variable in plain text: $env:TEST_VARIABLE"
+    It 'Masks the environment secret in the log even when a test prints it in plain text' {
+        Write-Host "Secret in plain text:   $env:TEST_ENV_SECRET"
+        Write-Host "Variable in plain text: $env:TEST_ENV_VARIABLE"
     }
 }
