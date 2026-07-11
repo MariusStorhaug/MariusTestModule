@@ -1,0 +1,16 @@
+name: env-probe-mid
+
+# SPIKE probe: intermediate reusable workflow that does NOT bind an environment; it
+# only forwards secrets down with `secrets: inherit`. Mirrors Process-PSModule's
+# workflow.yml sitting between the caller and the environment-bound leaf job.
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  mid:
+    uses: ./.github/workflows/env-probe-reusable.yml
+    secrets: inherit

@@ -45,3 +45,9 @@ jobs:
   reusable-inherit:
     uses: ./.github/workflows/env-probe-reusable.yml
     secrets: inherit
+
+  # 3-level nested chain mirroring Process-PSModule (caller -> workflow.yml ->
+  # Test-ModuleLocal): inherit at every hop, environment bound only on the leaf.
+  reusable-3level:
+    uses: ./.github/workflows/env-probe-mid.yml
+    secrets: inherit
