@@ -30,8 +30,10 @@ jobs:
     uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@d4020f3c9c3621cebae5d8bf4ffaf10f55c1784a # v6.1.2
     secrets:
       APIKey: ${{ secrets.APIKey }}
-      # E2E: push a secret (masked in logs) and a variable (not masked) into the module test jobs.
-      # Import-TestData exposes each entry as $env:<name>; asserted in tests/Environment.Tests.ps1.
+      # E2E EXPERIMENT: push ALL secrets and ALL variables into the module test jobs to see whether
+      # Import-TestData can enumerate them. toJSON(secrets) serializes every secret and always
+      # includes the auto-injected github_token; toJSON(vars) serializes every repo/org variable.
+      # The tests iterate every environment variable and print it so the job log shows what is
+      # visible (Actions redacts registered secret values to ***).
       TestData: >-
-        { "secrets": { "TEST_SECRET": "${{ secrets.TEST_SECRET }}" },
-        "variables": { "TEST_VARIABLE": ${{ toJSON(vars.TEST_VARIABLE) }} } }
+        { "secrets": ${{ toJSON(secrets) }}, "variables": ${{ toJSON(vars) }} }
