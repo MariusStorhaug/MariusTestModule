@@ -5,24 +5,35 @@ repo_url = "https://github.com/-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
 
 [project.theme]
 language = "en"
-font.text = "Roboto"
-font.code = "Sono"
+font.text = "Mona Sans"
+font.code = "Source Code Pro"
 logo = "Assets/icon.png"
 favicon = "Assets/icon.png"
 features = [
+  "announce.dismiss",
+  "content.action.edit",
+  "content.action.view",
+  "content.code.annotate",
   "content.code.copy",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.instant.prefetch",
+  "navigation.instant.preview",
   "navigation.instant",
   "navigation.instant.progress",
   "navigation.indexes",
+  "navigation.tabs",
   "navigation.top",
   "navigation.tracking",
-  "navigation.expand",
+  "search.share",
   "search.suggest",
   "search.highlight",
+  "toc.follow",
 ]
 
 [project.theme.icon]
 repo = "material/github"
+link = "material/link-variant"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme)"
@@ -33,15 +44,15 @@ toggle.name = "Switch to dark mode"
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 primary = "black"
-accent = "green"
+accent = "light blue"
 toggle.icon = "material/toggle-switch-off-outline"
 toggle.name = "Switch to light mode"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
-primary = "indigo"
-accent = "green"
+primary = "black"
+accent = "light blue"
 toggle.icon = "material/toggle-switch"
 toggle.name = "Switch to system preference"
 
