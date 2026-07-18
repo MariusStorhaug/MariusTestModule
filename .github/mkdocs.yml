@@ -32,6 +32,7 @@ theme:
   icon:
     repo: material/github
   features:
+    - content.code.copy
     - navigation.instant
     - navigation.instant.progress
     - navigation.indexes
