@@ -2,6 +2,7 @@
 site_name = "-{{ REPO_NAME }}-"
 repo_name = "-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
 repo_url = "https://github.com/-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
+extra_css = ["data:text/css,.md-tabs%7Bdisplay%3Anone%20!important%3B%7D"]
 
 [project.theme]
 language = "en"
