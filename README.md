@@ -1,5 +1,11 @@
 # Home
 
+<style>
+  .md-tabs {
+    display: none !important;
+  }
+</style>
+
 {{ DESCRIPTION }}
 
 ## Prerequisites
