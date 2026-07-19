@@ -1,3 +1,4 @@
+# Navigation behavior is injected centrally by Process-PSModule Build-Site.
 [project]
 site_name = "-{{ REPO_NAME }}-"
 repo_name = "-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
