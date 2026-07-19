@@ -53,8 +53,7 @@ To find examples of each of the commands you can use Get-Help -Examples 'Command
 
 ## Documentation
 
-Link to further documentation if available, or describe where in the repository users can find more detailed documentation about
-the module's functions and features.
+Function documentation is published to the project site under the `Functions` section and is generated from the module source.
 
 ## Contributing
 
