@@ -1,4 +1,5 @@
 # Navigation behavior is injected centrally by Process-PSModule Build-Site.
+# This file remains repo-local for theme and docs metadata only.
 [project]
 site_name = "-{{ REPO_NAME }}-"
 repo_name = "-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
