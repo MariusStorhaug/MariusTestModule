@@ -5,6 +5,7 @@
     display: none !important;
   }
 </style>
+<!-- Navigation behavior update marker -->
 
 {{ DESCRIPTION }}
 
