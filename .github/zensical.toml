@@ -2,7 +2,6 @@
 site_name = "-{{ REPO_NAME }}-"
 repo_name = "-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
 repo_url = "https://github.com/-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-"
-extra_javascript = ["https://cdn.jsdelivr.net/gh/-{{ REPO_OWNER }}-/-{{ REPO_NAME }}-@main/.github/docs/nav-state.js"]
 
 [project.theme]
 language = "en"
