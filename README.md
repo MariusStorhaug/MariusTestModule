@@ -25,7 +25,7 @@ Import-Module -Name {{ NAME }}
 
 ## Usage
 
-Here is a list of examples that are typical use cases for the module.
+Here are examples of typical use cases for the module.
 
 ### Example 1: Greet an entity
 
