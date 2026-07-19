@@ -69,6 +69,8 @@ permalink = true
 
 [project.markdown_extensions.pymdownx.details]
 
+[project.markdown_extensions.pymdownx.superfences]
+
 [project.extra.consent]
 title = "Cookie consent"
 description = """
