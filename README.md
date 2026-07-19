@@ -25,7 +25,7 @@ Import-Module -Name {{ NAME }}
 
 ## Usage
 
-Here is a list of example that are typical use cases for the module.
+Here is a list of examples that are typical use cases for the module.
 
 ### Example 1: Greet an entity
 
@@ -41,7 +41,7 @@ Hello, World!
 Provide examples for typical commands that a user would like to do with the module.
 
 ```powershell
-Import-Module -Name PSModuleTemplate
+Import-Module -Name MariusTestModule
 ```
 
 ### Find more examples
