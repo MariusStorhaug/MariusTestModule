@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   Process-PSModule:
-    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@migrate-to-zensical
+    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@883fa0c674b728a4bb86767ee326041ef05c0bb6
     secrets:
       APIKey: ${{ secrets.APIKey }}
       TestData: >-
