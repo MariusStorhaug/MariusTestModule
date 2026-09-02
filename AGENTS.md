@@ -35,8 +35,8 @@ Repository structure, module source layout, and how the Process-PSModule workflo
 ## Working in this repository
 
 - The caller workflow is [`.github/workflows/Process-PSModule.yml`](.github/workflows/Process-PSModule.yml). It calls the
-  shared reusable workflow and is pinned to a commit SHA with the version tag in a trailing comment so Dependabot can
-  update it. Do not replace the pin with a floating tag or branch.
+  shared reusable workflow and tracks the mutable `v8` major tag, so the module picks up framework fixes within v8
+  automatically. Keep the reference on the major tag rather than pinning a patch version or a commit SHA.
 - Pipeline behavior is configured in [`.github/PSModule.yml`](.github/PSModule.yml). Only override defaults the module
   actually needs.
 - The documentation site is built by the framework from [`.github/zensical.toml`](.github/zensical.toml). Navigation
