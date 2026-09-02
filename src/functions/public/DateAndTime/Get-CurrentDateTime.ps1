@@ -23,7 +23,7 @@
         Returns the current date in a custom format like "Monday, January 20, 2026".
 
         .LINK
-        https://MariusStorhaug.github.io/MariusTestModule/Functions/DateAndTime/Get-CurrentDateTime/
+        https://psmodule.io/MariusTestModule/Functions/DateAndTime/Get-CurrentDateTime/
     #>
     [OutputType([string])]
     [CmdletBinding()]
