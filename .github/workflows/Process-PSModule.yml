@@ -30,7 +30,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@v8
+    uses: PSModule/Process-PSModule/.github/workflows/workflow.yml@copilot/fix-publish-module-error
     secrets:
       PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
       GitHubAppClientId: ${{ secrets.SHELLY_CLIENT_ID }}
