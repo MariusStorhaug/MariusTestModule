@@ -5,7 +5,8 @@
 
         .DESCRIPTION
         Returns the current date and time formatted according to the specified format string.
-        Supports common format presets or custom format strings.
+        Supports common format presets or custom format strings. The Short and Long presets
+        follow the current culture of the calling session, while ISO8601 is culture-invariant.
 
         .EXAMPLE
         Get-CurrentDateTime
