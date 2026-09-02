@@ -43,3 +43,5 @@
         "Good $TimeOfDay!"
     }
 }
+
+# Issue #530 reproduction marker: dispatch must honour the merged PR version label.
