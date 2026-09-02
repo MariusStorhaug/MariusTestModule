@@ -7,7 +7,7 @@ If you find a problem or improvement, fix it if small; otherwise open an issue.
 
 ## What this repository is
 
-`MariusTestModule` is a PowerShell module used to exercise the PSModule framework end to end. Changes here validate
+`MariusTestModule` is a PowerShell module used to exercise the PSModule framework end-to-end. Changes here validate
 that the [Process-PSModule](https://github.com/PSModule/Process-PSModule) pipeline behaves as documented, so treat the
 CI/CD run as the primary output of the repository alongside the module itself.
 
